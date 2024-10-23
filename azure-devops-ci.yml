@@ -1,0 +1,23 @@
+---
+
+trigger:
+  - main
+stages:
+  - stage: build
+    jobs:
+      - job: build
+        pool:
+          vm-Image: 'ubuntu-latest'
+        steps:
+          - tasks: Npm@1
+            inputs:
+              command: 'install'
+          - tasks: Npm@1
+            inputs:
+              comamnd: 'custom'
+              customcommand: 'build'
+          - tasks: publishBuildArtifacts
+            inputs:
+              PathtoPublish: 
+              ArtifactName:
+              PublishLocation: 
